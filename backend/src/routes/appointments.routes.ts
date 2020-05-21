@@ -5,9 +5,15 @@ import { startOfHour, parseISO } from 'date-fns';
 import AppointmentsReposity from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
+import ensureAthenticated from '../middlewares/ensureAthenticated';
+
 const appointmentsRouter = Router();
 
+appointmentsRouter.use(ensureAthenticated);
+
 appointmentsRouter.get('/', async (request, response) => {
+console.log(request.user);
+
     const appointmentsReposity = getCustomRepository(AppointmentsReposity);
     const appointments = await appointmentsReposity.find();
 
