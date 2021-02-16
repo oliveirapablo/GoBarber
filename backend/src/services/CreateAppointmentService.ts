@@ -6,7 +6,7 @@ import AppError from '../errors/AppError';
 import Appointment from '../models/Appointment';
 import AppointmentsReposity from '../repositories/AppointmentsRepository';
 
-interface Reqeuest {
+interface Request {
     provider_id: string;
     date: Date;
 }
@@ -15,7 +15,7 @@ interface Reqeuest {
 */
 class CreateAppointmentService {
 
-    public async execute({ provider_id, date }: Reqeuest): Promise<Appointment> {
+    public async execute({ provider_id, date }: Request): Promise<Appointment> {
         const appointmentsReposity = getCustomRepository(AppointmentsReposity);
 
         const appointmentDate = startOfHour(date);
